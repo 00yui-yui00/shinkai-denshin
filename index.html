@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>☾ 深海電信 解読室 ☾</title>
 
 <style>
@@ -12,7 +13,9 @@
 }
 
 body{
+
     margin:0;
+
     min-height:100vh;
 
     background:
@@ -22,7 +25,6 @@ body{
 
     font-family:
     "Yu Mincho",
-    "Hiragino Mincho ProN",
     serif;
 
     display:flex;
@@ -30,23 +32,6 @@ body{
     align-items:center;
 
     padding:24px;
-
-    overflow-x:hidden;
-}
-
-body::before{
-
-    content:"";
-
-    position:fixed;
-    inset:0;
-
-    background:
-    radial-gradient(circle at 20% 15%, rgba(255,255,255,0.04), transparent 25%),
-    radial-gradient(circle at 80% 40%, rgba(255,255,255,0.03), transparent 30%),
-    radial-gradient(circle at 50% 90%, rgba(255,255,255,0.02), transparent 20%);
-
-    pointer-events:none;
 }
 
 .container{
@@ -54,65 +39,46 @@ body::before{
     width:100%;
     max-width:760px;
 
-    background:rgba(3,10,20,0.82);
+    background:
+    rgba(3,10,20,0.84);
 
-    border:1px solid rgba(210,180,110,0.45);
+    border:
+    1px solid rgba(210,180,110,0.45);
 
     border-radius:28px;
 
-    padding:34px;
-
-    position:relative;
+    padding:32px;
 
     box-shadow:
-    0 0 40px rgba(0,0,0,0.7),
-    0 0 24px rgba(210,180,110,0.08);
-
-    overflow:hidden;
-}
-
-.container::after{
-
-    content:"";
-
-    position:absolute;
-    inset:0;
-
-    background:
-    linear-gradient(
-    transparent,
-    rgba(255,255,255,0.015)
-    );
-
-    pointer-events:none;
+    0 0 40px rgba(0,0,0,0.7);
 }
 
 .title{
 
     text-align:center;
 
-    font-size:40px;
+    font-size:36px;
 
-    letter-spacing:0.18em;
+    letter-spacing:0.15em;
 
-    margin-bottom:10px;
+    margin-bottom:12px;
 }
 
 .subtitle{
 
     text-align:center;
 
+    line-height:1.9;
+
     opacity:0.72;
 
-    line-height:2;
-
-    margin-bottom:34px;
+    margin-bottom:30px;
 }
 
 .signal-box{
 
     display:flex;
-    justify-content:space-between;
+
     gap:12px;
 
     margin-bottom:24px;
@@ -124,15 +90,16 @@ body::before{
 
     flex:1;
 
-    min-width:180px;
+    min-width:160px;
 
     background:#091523;
-
-    border:1px solid rgba(210,180,110,0.2);
 
     border-radius:18px;
 
     padding:16px;
+
+    border:
+    1px solid rgba(210,180,110,0.18);
 }
 
 .signal-label{
@@ -142,53 +109,11 @@ body::before{
     opacity:0.55;
 
     margin-bottom:8px;
-
-    letter-spacing:0.12em;
 }
 
 .signal-value{
 
     font-size:18px;
-
-    letter-spacing:0.08em;
-}
-
-.mode-switch{
-
-    display:flex;
-    gap:14px;
-
-    margin-bottom:22px;
-}
-
-.mode-switch button{
-
-    flex:1;
-
-    padding:14px;
-
-    border-radius:999px;
-
-    border:1px solid rgba(210,180,110,0.3);
-
-    background:#102034;
-
-    color:#f2e8d2;
-
-    cursor:pointer;
-
-    transition:0.2s;
-
-    font-size:15px;
-}
-
-.mode-switch button.active{
-
-    background:#d1b273;
-
-    color:#08111c;
-
-    font-weight:bold;
 }
 
 .label{
@@ -204,41 +129,65 @@ textarea{
 
     min-height:150px;
 
-    resize:vertical;
-
     background:#07111d;
 
     color:#f2e8d2;
 
-    border:1px solid rgba(210,180,110,0.35);
+    border:
+    1px solid rgba(210,180,110,0.35);
 
     border-radius:20px;
 
     padding:20px;
 
-    line-height:1.9;
+    font-size:22px;
 
-    font-size:17px;
+    line-height:1.8;
 
-    outline:none;
+    resize:vertical;
 }
 
-.buttons{
+.helper-title{
 
-    display:flex;
+    margin-top:18px;
 
-    gap:14px;
+    margin-bottom:10px;
 
-    margin-top:20px;
-
-    flex-wrap:wrap;
+    opacity:0.7;
 }
 
-.action-btn{
+.input-helpers{
 
-    flex:1;
+    display:grid;
 
-    min-width:180px;
+    grid-template-columns:
+    repeat(5,1fr);
+
+    gap:10px;
+}
+
+.helper-btn{
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:16px;
+
+    background:#102034;
+
+    color:#f2e8d2;
+
+    font-size:18px;
+
+    cursor:pointer;
+}
+
+.receive-btn{
+
+    width:100%;
+
+    margin-top:24px;
 
     padding:18px;
 
@@ -250,38 +199,72 @@ textarea{
 
     color:#07111d;
 
+    font-size:18px;
+
     font-weight:bold;
 
-    font-size:17px;
-
     cursor:pointer;
-
-    transition:0.2s;
 }
 
-.action-btn:hover{
+.sound-row{
 
-    transform:translateY(-2px);
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    margin-top:18px;
+
+    padding:14px 16px;
+
+    background:#091523;
+
+    border-radius:16px;
+}
+
+.sound-toggle{
+
+    border:none;
+
+    border-radius:999px;
+
+    padding:10px 16px;
+
+    background:#d1b273;
+
+    color:#07111d;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.status{
+
+    margin-top:16px;
+
+    min-height:24px;
+
+    opacity:0.7;
 }
 
 .result-box{
 
-    margin-top:34px;
+    margin-top:32px;
 
-    border-top:1px solid rgba(210,180,110,0.2);
+    border-top:
+    1px solid rgba(210,180,110,0.2);
 
-    padding-top:28px;
+    padding-top:24px;
 }
 
 .result-title{
 
-    margin-bottom:12px;
+    margin-bottom:10px;
 
     opacity:0.6;
 
     font-size:13px;
-
-    letter-spacing:0.12em;
 }
 
 .result{
@@ -292,22 +275,20 @@ textarea{
 
     border-radius:20px;
 
-    border:1px solid rgba(210,180,110,0.18);
-
     padding:22px;
 
-    font-size:22px;
+    font-size:24px;
 
-    line-height:1.9;
+    line-height:1.8;
 
     word-break:break-word;
 }
 
 .copy-btn{
 
-    margin-top:16px;
-
     width:100%;
+
+    margin-top:16px;
 
     padding:14px;
 
@@ -319,27 +300,14 @@ textarea{
 
     color:#f2e8d2;
 
-    border:1px solid rgba(210,180,110,0.2);
-
     cursor:pointer;
-}
-
-.status{
-
-    margin-top:16px;
-
-    min-height:28px;
-
-    opacity:0.7;
-
-    font-size:14px;
 }
 
 .note{
 
-    margin-top:28px;
+    margin-top:24px;
 
-    line-height:1.9;
+    line-height:1.8;
 
     opacity:0.65;
 
@@ -348,29 +316,27 @@ textarea{
 
 .footer{
 
-    margin-top:34px;
+    margin-top:32px;
 
     text-align:center;
 
     opacity:0.45;
 
-    letter-spacing:0.18em;
-
     font-size:12px;
+
+    letter-spacing:0.15em;
 }
 
 @media(max-width:600px){
 
-    .container{
-        padding:24px;
-    }
-
     .title{
-        font-size:30px;
+        font-size:28px;
     }
 
-    .buttons{
-        flex-direction:column;
+    .input-helpers{
+
+        grid-template-columns:
+        repeat(3,1fr);
     }
 }
 
@@ -387,60 +353,118 @@ textarea{
 
     <div class="subtitle">
         波間より届いた通信を、ここで受信します。<br>
-        言葉にならなかった想いを、暗号へ。
+        言葉にならなかった想いを、暗号から読み解いてください。
     </div>
 
     <div class="signal-box">
 
         <div class="signal-card">
-            <div class="signal-label">SIGNAL No.</div>
-            <div class="signal-value" id="signalNumber">014</div>
+
+            <div class="signal-label">
+                SIGNAL No.
+            </div>
+
+            <div class="signal-value"
+            id="signalNumber">
+                014
+            </div>
+
         </div>
 
         <div class="signal-card">
-            <div class="signal-label">DEPTH</div>
-            <div class="signal-value" id="depthValue">372m</div>
+
+            <div class="signal-label">
+                DEPTH
+            </div>
+
+            <div class="signal-value"
+            id="depthValue">
+                372m
+            </div>
+
         </div>
 
         <div class="signal-card">
-            <div class="signal-label">RECEIVED</div>
-            <div class="signal-value" id="timeValue">--:--</div>
+
+            <div class="signal-label">
+                RECEIVED
+            </div>
+
+            <div class="signal-value"
+            id="timeValue">
+                --:--
+            </div>
+
         </div>
-
-    </div>
-
-    <div class="mode-switch">
-
-        <button id="romanBtn" class="active">
-            Roman
-        </button>
-
-        <button id="jpBtn">
-            和文
-        </button>
 
     </div>
 
     <div class="label">
-        通信内容を入力してください
+        通信文を入力してください
     </div>
 
-    <textarea id="inputArea"
-    placeholder="例：OKAERI または --- / -.- / .- / . / .-. / .."></textarea>
+    <textarea
+    id="inputArea"
+    placeholder="例：－・－ / ・・ / －－"></textarea>
 
-    <div class="buttons">
+    <div class="helper-title">
+        入力補助
+    </div>
 
-        <button class="action-btn" onclick="encodeMessage()">
-            送信する
+    <div class="input-helpers">
+
+        <button class="helper-btn"
+        onclick="addSymbol('・')">
+            ・
         </button>
 
-        <button class="action-btn" onclick="decodeMessage()">
-            受信する
+        <button class="helper-btn"
+        onclick="addSymbol('－')">
+            －
+        </button>
+
+        <button class="helper-btn"
+        onclick="addSymbol(' / ')">
+            区切り
+        </button>
+
+        <button class="helper-btn"
+        onclick="deleteOne()">
+            ←
+        </button>
+
+        <button class="helper-btn"
+        onclick="clearInput()">
+            消す
         </button>
 
     </div>
 
-    <div class="status" id="statusText"></div>
+    <button class="receive-btn"
+    onclick="decodeMessage()">
+
+        通信を受信する
+
+    </button>
+
+    <div class="sound-row">
+
+        <div>
+            通信音
+        </div>
+
+        <button class="sound-toggle"
+        id="soundToggle"
+        onclick="toggleSound()">
+
+            ON
+
+        </button>
+
+    </div>
+
+    <div class="status"
+    id="statusText"></div>
 
     <div class="result-box">
 
@@ -448,20 +472,28 @@ textarea{
             通信内容
         </div>
 
-        <div class="result" id="resultArea">
+        <div class="result"
+        id="resultArea">
+
             …
+
         </div>
 
-        <button class="copy-btn" onclick="copyResult()">
+        <button class="copy-btn"
+        onclick="copyResult()">
+
             通信内容をコピー
+
         </button>
 
     </div>
 
     <div class="note">
-        ※ モールス信号の区切りは「 / 」で入力してください。<br>
-        ※ 和文モードは現在試験運用中です。<br>
-        ※ 深海電信は静かな海より送信されています。
+
+        ※ 点は「・」、線は「－」で入力できます。<br>
+        ※ 「.」「-」入力にも対応しています。<br>
+        ※ 区切りには「 / 」を使用してください。
+
     </div>
 
     <div class="footer">
@@ -472,105 +504,48 @@ textarea{
 
 <script>
 
-let currentMode = "roman";
+let soundEnabled = true;
 
-const romanMap = {
-"A":".-",
-"B":"-...",
-"C":"-.-.",
-"D":"-..",
-"E":".",
-"F":"..-.",
-"G":"--.",
-"H":"....",
-"I":"..",
-"J":".---",
-"K":"-.-",
-"L":".-..",
-"M":"--",
-"N":"-.",
-"O":"---",
-"P":".--.",
-"Q":"--.-",
-"R":".-.",
-"S":"...",
-"T":"-",
-"U":"..-",
-"V":"...-",
-"W":".--",
-"X":"-..-",
-"Y":"-.--",
-"Z":"--..",
-"0":"-----",
-"1":".----",
-"2":"..---",
-"3":"...--",
-"4":"....-",
-"5":".....",
-"6":"-....",
-"7":"--...",
-"8":"---..",
-"9":"----."
+const morseToRoman = {
+
+"・－":"A",
+"－・・・":"B",
+"－・－・":"C",
+"－・・":"D",
+"・":"E",
+"・・－・":"F",
+"－－・":"G",
+"・・・・":"H",
+"・・":"I",
+"・－－－":"J",
+"－・－":"K",
+"・－・・":"L",
+"－－":"M",
+"－・":"N",
+"－－－":"O",
+"・－－・":"P",
+"－－・－":"Q",
+"・－・":"R",
+"・・・":"S",
+"－":"T",
+"・・－":"U",
+"・・・－":"V",
+"・－－":"W",
+"－・・－":"X",
+"－・－－":"Y",
+"－－・・":"Z",
+
+"－－－－－":"0",
+"・－－－－":"1",
+"・・－－－":"2",
+"・・・－－":"3",
+"・・・・－":"4",
+"・・・・・":"5",
+"－・・・・":"6",
+"－－・・・":"7",
+"－－－・・":"8",
+"－－－－・":"9"
 };
-
-const jpMap = {
-"あ":"－－・－－",
-"い":"・－",
-"う":"・・－",
-"え":"－・－－－",
-"お":"・－・・・",
-"か":"・－・・",
-"き":"－・－・・",
-"く":"・・・－",
-"け":"－・－－",
-"こ":"－－－－",
-"さ":"－・－・－",
-"し":"－－・－・",
-"す":"－－－・－",
-"せ":"・－－－・",
-"そ":"－－－・",
-"た":"－・",
-"ち":"・・－・",
-"つ":"・－－・",
-"て":"・－・－－",
-"と":"・・－・・",
-"な":"・－・",
-"に":"－・－・",
-"ぬ":"・・・・",
-"ね":"－－・－",
-"の":"・・－－",
-"は":"－・・・",
-"ひ":"－－・・－",
-"ふ":"－－・・",
-"へ":"・",
-"ほ":"－・・",
-"ま":"－・・－",
-"み":"・・－・－",
-"む":"－",
-"め":"－・・・－",
-"も":"－・・－・",
-"や":"・－－",
-"ゆ":"－・・－－",
-"よ":"－－",
-"ら":"・・・",
-"り":"－－・",
-"る":"－・－－・",
-"れ":"－－－",
-"ろ":"・－・－",
-"わ":"－・－",
-"を":"・－－－",
-"ん":"・－・－・"
-};
-
-function reverseMap(obj){
-
-    return Object.fromEntries(
-        Object.entries(obj).map(([k,v])=>[v,k])
-    );
-}
-
-const reverseRomanMap = reverseMap(romanMap);
-const reverseJpMap = reverseMap(jpMap);
 
 function updateSignalData(){
 
@@ -583,80 +558,145 @@ function updateSignalData(){
     const now = new Date();
 
     const time =
-    now.getHours().toString().padStart(2,"0")+
-    ":"+
+    now.getHours().toString().padStart(2,"0")
+    + ":"
+    +
     now.getMinutes().toString().padStart(2,"0");
 
-    document.getElementById("signalNumber").textContent = signal;
-    document.getElementById("depthValue").textContent = depth + "m";
-    document.getElementById("timeValue").textContent = time;
+    document.getElementById("signalNumber")
+    .textContent = signal;
+
+    document.getElementById("depthValue")
+    .textContent = depth + "m";
+
+    document.getElementById("timeValue")
+    .textContent = time;
 }
 
 updateSignalData();
 
 setInterval(updateSignalData,30000);
 
-document.getElementById("romanBtn").onclick = ()=>{
+function playBeep(){
 
-    currentMode = "roman";
+    if(!soundEnabled){
 
-    document.getElementById("romanBtn").classList.add("active");
-    document.getElementById("jpBtn").classList.remove("active");
-};
-
-document.getElementById("jpBtn").onclick = ()=>{
-
-    currentMode = "jp";
-
-    document.getElementById("jpBtn").classList.add("active");
-    document.getElementById("romanBtn").classList.remove("active");
-};
-
-function showStatus(text){
-
-    document.getElementById("statusText").textContent = text;
-}
-
-function encodeMessage(){
-
-    const input =
-    document.getElementById("inputArea")
-    .value
-    .trim();
-
-    if(!input){
         return;
     }
 
-    showStatus("送信中...");
+    try{
 
-    setTimeout(()=>{
+        const AudioContext =
+        window.AudioContext ||
+        window.webkitAudioContext;
 
-        let result = "";
+        const audioCtx =
+        new AudioContext();
 
-        if(currentMode === "roman"){
+        const oscillator =
+        audioCtx.createOscillator();
 
-            result =
-            input
-            .toUpperCase()
-            .split("")
-            .map(char=>romanMap[char] || char)
-            .join(" / ");
+        const gainNode =
+        audioCtx.createGain();
 
-        }else{
+        oscillator.type = "sine";
 
-            result =
-            input
-            .split("")
-            .map(char=>jpMap[char] || char)
-            .join(" / ");
-        }
+        oscillator.frequency.setValueAtTime(
+            880,
+            audioCtx.currentTime
+        );
 
-        document.getElementById("resultArea").textContent = result;
+        gainNode.gain.setValueAtTime(
+            0.035,
+            audioCtx.currentTime
+        );
 
-        showStatus("通信を送信しました。");
+        gainNode.gain.exponentialRampToValueAtTime(
+            0.001,
+            audioCtx.currentTime + 0.08
+        );
 
-    },1000);
+        oscillator.connect(gainNode);
+
+        gainNode.connect(audioCtx.destination);
+
+        oscillator.start();
+
+        oscillator.stop(
+            audioCtx.currentTime + 0.08
+        );
+
+    }catch(e){
+
+        console.log("Audio unsupported");
+    }
+}
+
+function toggleSound(){
+
+    soundEnabled = !soundEnabled;
+
+    document.getElementById("soundToggle")
+    .textContent =
+    soundEnabled ? "ON" : "OFF";
+
+    if(soundEnabled){
+
+        playBeep();
+    }
+}
+
+function addSymbol(symbol){
+
+    const input =
+    document.getElementById("inputArea");
+
+    input.value += symbol;
+
+    input.focus();
+
+    playBeep();
+}
+
+function deleteOne(){
+
+    const input =
+    document.getElementById("inputArea");
+
+    input.value =
+    input.value.slice(0,-1);
+
+    input.focus();
+
+    playBeep();
+}
+
+function clearInput(){
+
+    document.getElementById("inputArea")
+    .value = "";
+
+    document.getElementById("resultArea")
+    .textContent = "…";
+
+    document.getElementById("statusText")
+    .textContent =
+    "通信文を消去しました。";
+
+    playBeep();
+}
+
+function normalizeMorse(text){
+
+    return text
+
+    .replace(/\./g,"・")
+
+    .replace(/-/g,"－")
+
+    .replace(/\|/g,"/")
+
+    .trim();
 }
 
 function decodeMessage(){
@@ -667,40 +707,55 @@ function decodeMessage(){
     .trim();
 
     if(!input){
+
+        document.getElementById("statusText")
+        .textContent =
+        "通信文が未入力です。";
+
         return;
     }
 
-    showStatus("受信中...");
+    playBeep();
+
+    document.getElementById("statusText")
+    .textContent =
+    "受信中...";
 
     setTimeout(()=>{
 
+        const normalized =
+        normalizeMorse(input);
+
         const parts =
-        input
+
+        normalized
+
         .split("/")
-        .map(part=>part.trim());
 
-        let result = "";
+        .map(part=>part.trim())
 
-        if(currentMode === "roman"){
+        .filter(part=>part.length > 0);
 
-            result =
-            parts
-            .map(code=>reverseRomanMap[code] || "□")
-            .join("");
+        const result =
 
-        }else{
+        parts
 
-            result =
-            parts
-            .map(code=>reverseJpMap[code] || "□")
-            .join("");
-        }
+        .map(code=>
 
-        document.getElementById("resultArea").textContent = result;
+            morseToRoman[code] || "□"
 
-        showStatus("通信を受信しました。");
+        )
 
-    },1000);
+        .join("");
+
+        document.getElementById("resultArea")
+        .textContent = result;
+
+        document.getElementById("statusText")
+        .textContent =
+        "通信を受信しました。";
+
+    },900);
 }
 
 function copyResult(){
@@ -709,10 +764,16 @@ function copyResult(){
     document.getElementById("resultArea")
     .textContent;
 
-    navigator.clipboard.writeText(text)
+    navigator.clipboard
+    .writeText(text)
+
     .then(()=>{
 
-        showStatus("通信内容をコピーしました。");
+        document.getElementById("statusText")
+        .textContent =
+        "通信内容をコピーしました。";
+
+        playBeep();
     });
 }
 
