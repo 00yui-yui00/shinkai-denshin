@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>☾ 深海電信 解読室 ☾</title>
+
+<style>
+
+*{
+    box-sizing:border-box;
+}
+
+body{
+    margin:0;
+    min-height:100vh;
+    background:
+    radial-gradient(circle at top,#17304d 0%,#08121f 60%,#04070d 100%);
+    color:#f3ead7;
+    font-family:
+    "Yu Mincho",
+    "Hiragino Mincho ProN",
+    serif;
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:24px;
+}
+
+.container{
+
+    width:100%;
+    max-width:720px;
+
+    background:
+    rgba(4,12,22,0.82);
+
+    border:1px solid rgba(201,169,103,0.5);
+
+    border-radius:24px;
+
+    padding:32px;
+
+    box-shadow:
+    0 0 40px rgba(0,0,0,0.6),
+    0 0 20px rgba(201,169,103,0.12);
+
+    position:relative;
+    overflow:hidden;
+}
+
+.container::before{
+    content:"";
+    position:absolute;
+    inset:0;
+
+    background:
+    radial-gradient(circle at 20% 10%, rgba(255,255,255,0.05), transparent 30%),
+    radial-gradient(circle at 80% 30%, rgba(255,255,255,0.03), transparent 25%);
+
+    pointer-events:none;
+}
+
+.title{
+
+    text-align:center;
+    font-size:38px;
+    letter-spacing:0.18em;
+
+    margin-bottom:8px;
+}
+
+.subtitle{
+
+    text-align:center;
+    font-size:14px;
+
+    opacity:0.75;
+
+    margin-bottom:32px;
+    line-height:1.8;
+}
+
+.mode-switch{
+
+    display:flex;
+    gap:12px;
+
+    margin-bottom:18px;
+}
+
+.mode-switch button{
+
+    flex:1;
+
+    padding:12px;
+
+    border:none;
+
+    border-radius:999px;
+
+    background:#102033;
+
+    color:#f3ead7;
+
+    border:1px solid rgba(201,169,103,0.3);
+
+    cursor:pointer;
+
+    font-size:14px;
+}
+
+.mode-switch button.active{
+
+    background:#c9a967;
+    color:#08121f;
+    font-weight:bold;
+}
+
+.label{
+
+    margin-bottom:10px;
+    font-size:14px;
+    opacity:0.8;
+}
+
+textarea{
+
+    width:100%;
+    min-height:140px;
+
+    resize:vertical;
+
+    border-radius:18px;
+
+    border:1px solid rgba(201,169,103,0.4);
+
+    background:#091523;
+
+    color:#f3ead7;
+
+    padding:18px;
+
+    font-size:16px;
+    line-height:1.8;
+
+    outline:none;
+}
+
+.buttons{
+
+    display:flex;
+    gap:14px;
+
+    margin-top:18px;
+}
+
+.action-btn{
+
+    flex:1;
+
+    padding:16px;
+
+    border:none;
+
+    border-radius:999px;
+
+    cursor:pointer;
+
+    background:#c9a967;
+
+    color:#08121f;
+
+    font-size:16px;
+    font-weight:bold;
+
+    transition:0.2s;
+}
+
+.action-btn:hover{
+
+    transform:translateY(-2px);
+}
+
+.result-box{
+
+    margin-top:28px;
+
+    border-top:1px solid rgba(201,169,103,0.3);
+
+    padding-top:24px;
+}
+
+.result-title{
+
+    font-size:14px;
+    opacity:0.7;
+
+    margin-bottom:12px;
+}
+
+.result{
+
+    min-height:80px;
+
+    padding:18px;
+
+    border-radius:18px;
+
+    background:#07111d;
+
+    border:1px solid rgba(201,169,103,0.18);
+
+    line-height:1.9;
+    font-size:18px;
+
+    word-break:break-word;
+}
+
+.note{
+
+    margin-top:24px;
+
+    font-size:13px;
+    line-height:1.8;
+
+    opacity:0.65;
+}
+
+.footer{
+
+    margin-top:30px;
+
+    text-align:center;
+
+    font-size:12px;
+    opacity:0.45;
+
+    letter-spacing:0.15em;
+}
+
+@media(max-width:600px){
+
+    .container{
+        padding:24px;
+    }
+
+    .title{
+        font-size:28px;
+    }
+
+    .buttons{
+        flex-direction:column;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+    <div class="title">
+        ☾ 深海電信 ☾
+    </div>
+
+    <div class="subtitle">
+        波間より届いた通信を、ここで受信します。<br>
+        言葉にならなかった想いを、暗号へ。
+    </div>
+
+    <div class="mode-switch">
+
+        <button id="romanBtn" class="active">
+            Roman
+        </button>
+
+        <button id="jpBtn">
+            和文
+        </button>
+
+    </div>
+
+    <div class="label">
+        通信内容を入力してください
+    </div>
+
+    <textarea id="inputArea"
+    placeholder="例：OKAERI または --- / -.- / .- / . / .-. / .."></textarea>
+
+    <div class="buttons">
+
+        <button class="action-btn" onclick="encodeMessage()">
+            送信する
+        </button>
+
+        <button class="action-btn" onclick="decodeMessage()">
+            受信する
+        </button>
+
+    </div>
+
+    <div class="result-box">
+
+        <div class="result-title">
+            通信内容
+        </div>
+
+        <div class="result" id="resultArea">
+            …
+        </div>
+
+    </div>
+
+    <div class="note">
+        ※ モールス信号の区切りは「 / 」で入力してください。<br>
+        ※ 和文モードは現在試験運用中です。
+    </div>
+
+    <div class="footer">
+        DEEP SEA TELEGRAM
+    </div>
+
+</div>
+
+<script>
+
+let currentMode = "roman";
+
+const romanMap = {
+
+"A":".-",
+"B":"-...",
+"C":"-.-.",
+"D":"-..",
+"E":".",
+"F":"..-.",
+"G":"--.",
+"H":"....",
+"I":"..",
+"J":".---",
+"K":"-.-",
+"L":".-..",
+"M":"--",
+"N":"-.",
+"O":"---",
+"P":".--.",
+"Q":"--.-",
+"R":".-.",
+"S":"...",
+"T":"-",
+"U":"..-",
+"V":"...-",
+"W":".--",
+"X":"-..-",
+"Y":"-.--",
+"Z":"--..",
+
+"0":"-----",
+"1":".----",
+"2":"..---",
+"3":"...--",
+"4":"....-",
+"5":".....",
+"6":"-....",
+"7":"--...",
+"8":"---..",
+"9":"----."
+
+};
+
+const jpMap = {
+
+"あ":"－－・－－",
+"い":"・－",
+"う":"・・－",
+"え":"－・－－－",
+"お":"・－・・・",
+
+"か":"・－・・",
+"き":"－・－・・",
+"く":"・・・－",
+"け":"－・－－",
+"こ":"－－－－",
+
+"さ":"－・－・－",
+"し":"－－・－・",
+"す":"－－－・－",
+"せ":"・－－－・",
+"そ":"－－－・",
+
+"た":"－・",
+"ち":"・・－・",
+"つ":"・－－・",
+"て":"・－・－－",
+"と":"・・－・・",
+
+"な":"・－・",
+"に":"－・－・",
+"ぬ":"・・・・",
+"ね":"－－・－",
+"の":"・・－－",
+
+"は":"－・・・",
+"ひ":"－－・・－",
+"ふ":"－－・・",
+"へ":"・",
+"ほ":"－・・",
+
+"ま":"－・・－",
+"み":"・・－・－",
+"む":"－",
+"め":"－・・・－",
+"も":"－・・－・",
+
+"や":"・－－",
+"ゆ":"－・・－－",
+"よ":"－－",
+
+"ら":"・・・",
+"り":"－－・",
+"る":"－・－－・",
+"れ":"－－－",
+"ろ":"・－・－",
+
+"わ":"－・－",
+"を":"・－－－",
+"ん":"・－・－・"
+
+};
+
+function reverseMap(obj){
+
+    return Object.fromEntries(
+        Object.entries(obj).map(([k,v])=>[v,k])
+    );
+}
+
+const reverseRomanMap = reverseMap(romanMap);
+const reverseJpMap = reverseMap(jpMap);
+
+document.getElementById("romanBtn").onclick = ()=>{
+
+    currentMode = "roman";
+
+    document.getElementById("romanBtn").classList.add("active");
+    document.getElementById("jpBtn").classList.remove("active");
+};
+
+document.getElementById("jpBtn").onclick = ()=>{
+
+    currentMode = "jp";
+
+    document.getElementById("jpBtn").classList.add("active");
+    document.getElementById("romanBtn").classList.remove("active");
+};
+
+function encodeMessage(){
+
+    const input =
+    document.getElementById("inputArea")
+    .value
+    .trim();
+
+    if(!input){
+
+        return;
+    }
+
+    let result = "";
+
+    if(currentMode === "roman"){
+
+        result =
+        input
+        .toUpperCase()
+        .split("")
+        .map(char=>romanMap[char] || char)
+        .join(" / ");
+
+    }else{
+
+        result =
+        input
+        .split("")
+        .map(char=>jpMap[char] || char)
+        .join(" / ");
+    }
+
+    document.getElementById("resultArea").textContent = result;
+}
+
+function decodeMessage(){
+
+    const input =
+    document.getElementById("inputArea")
+    .value
+    .trim();
+
+    if(!input){
+
+        return;
+    }
+
+    const parts =
+    input
+    .split("/")
+    .map(part=>part.trim());
+
+    let result = "";
+
+    if(currentMode === "roman"){
+
+        result =
+        parts
+        .map(code=>reverseRomanMap[code] || "□")
+        .join("");
+
+    }else{
+
+        result =
+        parts
+        .map(code=>reverseJpMap[code] || "□")
+        .join("");
+    }
+
+    document.getElementById("resultArea").textContent = result;
+}
+
+</script>
+
+</body>
+</html>
